@@ -29,6 +29,8 @@
 
 #define SIP_NO_FILE
 
+
+class Qgs3DMapToolPaintBrush;
 class QLabel;
 class QProgressBar;
 
@@ -89,6 +91,7 @@ class APP_EXPORT Qgs3DMapCanvasWidget : public QWidget
     void cameraControl();
     void identify();
     void measureLine();
+    void paintBrush();
     void changePointCloudAttribute();
     void exportScene();
     void toggleNavigationWidget( bool visibility );
@@ -127,6 +130,7 @@ class APP_EXPORT Qgs3DMapCanvasWidget : public QWidget
     QTimer *mLabelNavSpeedHideTimeout = nullptr;
     Qgs3DMapToolIdentify *mMapToolIdentify = nullptr;
     Qgs3DMapToolMeasureLine *mMapToolMeasureLine = nullptr;
+    Qgs3DMapToolPaintBrush *mMapToolPaintBrush = nullptr;
     Qgs3DMapToolPointCloudChangeAttribute *mMapToolPointCloudChangeAttribute = nullptr;
     std::unique_ptr<QgsMapToolExtent> mMapToolExtent;
     QgsMapTool *mMapToolPrevious = nullptr;
