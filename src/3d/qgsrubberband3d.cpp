@@ -140,9 +140,25 @@ void QgsRubberBand3D::setColor( QColor color )
     mMarkerSymbol->setColor( color );
   }
 
-  if ( mMarkerSymbol->symbolLayerCount() > 0 && mMarkerSymbol->symbolLayer( 0 )->layerType() == QLatin1String( "SimpleMarker" ) )
+  if ( mMarkerSymbol->symbolLayerCount() > 0 && mMarkerSymbol->symbolLayer( 0 )->layerType() == QLatin1String( "SimpleMarker" ) && !mOutlineColor.value() )
   {
     static_cast<QgsMarkerSymbolLayer *>( mMarkerSymbol->symbolLayer( 0 ) )->setStrokeColor( color );
+  }
+  updateMarkerMaterial();
+}
+
+QColor QgsRubberBand3D::outlineColor() const
+{
+  return mOutlineColor;
+}
+
+void QgsRubberBand3D::setOutlineColor( const QColor color )
+{
+  mOutlineColor = color;
+
+  if ( mMarkerSymbol->symbolLayerCount() > 0 && mMarkerSymbol->symbolLayer( 0 )->layerType() == QLatin1String( "SimpleMarker" ) )
+  {
+    mMarkerSymbol->symbolLayer( 0 )->setStrokeColor( color );
   }
   updateMarkerMaterial();
 }
@@ -157,7 +173,7 @@ void QgsRubberBand3D::setMarkerType( MarkerType marker )
     { QStringLiteral( "color" ), lineOrPolygon ? mColor.lighter( 130 ).name() : mColor.name() },
     { QStringLiteral( "size_unit" ), QStringLiteral( "pixel" ) },
     { QStringLiteral( "size" ), QString::number( lineOrPolygon ? mWidth * 3.f : mWidth ) },
-    { QStringLiteral( "outline_color" ), mColor.name() },
+    { QStringLiteral( "outline_color" ), mOutlineColor.value() ? mOutlineColor.name() : mColor.name() },
     { QStringLiteral( "outline_width" ), QString::number( lineOrPolygon ? 0.5 : 1 ) },
     { QStringLiteral( "name" ), mMarkerType == Square ? QStringLiteral( "square" ) : QStringLiteral( "circle" ) }
   };

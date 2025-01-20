@@ -107,6 +107,18 @@ class _3D_EXPORT QgsRubberBand3D
     void setColor( QColor color );
 
     /**
+     * Returns the rubber band outline color
+     * \since QGIS 3.44
+     */
+    QColor outlineColor() const;
+
+    /**
+     * Sets the rubber band outline color
+     * \since QGIS 3.44
+     */
+    void setOutlineColor( QColor color );
+
+    /**
      * Sets the \a marker type to highlight point geometries and line vertices.
      */
     void setMarkerType( MarkerType marker );
@@ -147,6 +159,7 @@ class _3D_EXPORT QgsRubberBand3D
     MarkerType mMarkerType = Circle;
     float mWidth = 3.f;
     QColor mColor = Qt::red;
+    QColor mOutlineColor;
 
     Qt3DCore::QEntity *mLineEntity = nullptr;   // owned by parentEntity (from constructor)
     Qt3DCore::QEntity *mMarkerEntity = nullptr; // owned by parentEntity (from constructor)
