@@ -91,7 +91,7 @@ class _3D_EXPORT QgsRubberBand3D
       Circle
     };
 
-    QgsRubberBand3D( Qgs3DMapSettings &map, QgsWindow3DEngine *engine, Qt3DCore::QEntity *parentEntity, Qgis::GeometryType geometryType = Qgis::GeometryType::Line );
+    QgsRubberBand3D( Qgs3DMapSettings &map, QgsWindow3DEngine *engine, Qt3DCore::QEntity *parentEntity, Qgis::GeometryType geometryType = Qgis::GeometryType::Line, bool isOutlineDashed = false );
     ~QgsRubberBand3D();
 
     //! Returns the rubber band width in pixels
@@ -160,6 +160,7 @@ class _3D_EXPORT QgsRubberBand3D
     float mWidth = 3.f;
     QColor mColor = Qt::red;
     QColor mOutlineColor;
+    bool mIsOutlineDashed = false;
 
     Qt3DCore::QEntity *mLineEntity = nullptr;   // owned by parentEntity (from constructor)
     Qt3DCore::QEntity *mMarkerEntity = nullptr; // owned by parentEntity (from constructor)

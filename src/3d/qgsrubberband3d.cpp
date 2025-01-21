@@ -45,10 +45,11 @@
 /// @cond PRIVATE
 
 
-QgsRubberBand3D::QgsRubberBand3D( Qgs3DMapSettings &map, QgsWindow3DEngine *engine, Qt3DCore::QEntity *parentEntity, Qgis::GeometryType geometryType )
+QgsRubberBand3D::QgsRubberBand3D( Qgs3DMapSettings &map, QgsWindow3DEngine *engine, Qt3DCore::QEntity *parentEntity, Qgis::GeometryType geometryType, bool isOutlineDashed )
   : mMapSettings( &map )
   , mEngine( engine )
   , mGeometryType( geometryType )
+  , mIsOutlineDashed( isOutlineDashed )
 {
   if ( mGeometryType == Qgis::GeometryType::Line || mGeometryType == Qgis::GeometryType::Polygon )
   {
@@ -174,6 +175,7 @@ void QgsRubberBand3D::setMarkerType( MarkerType marker )
     { QStringLiteral( "size_unit" ), QStringLiteral( "pixel" ) },
     { QStringLiteral( "size" ), QString::number( lineOrPolygon ? mWidth * 3.f : mWidth ) },
     { QStringLiteral( "outline_color" ), mOutlineColor.value() ? mOutlineColor.name() : mColor.name() },
+    { QStringLiteral( "outline_style" ), mIsOutlineDashed ? QStringLiteral( "dot" ) : QStringLiteral( "solid" ) },
     { QStringLiteral( "outline_width" ), QString::number( lineOrPolygon ? 0.5 : 1 ) },
     { QStringLiteral( "name" ), mMarkerType == Square ? QStringLiteral( "square" ) : QStringLiteral( "circle" ) }
   };
