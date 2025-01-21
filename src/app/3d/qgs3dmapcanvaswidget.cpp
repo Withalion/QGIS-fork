@@ -986,7 +986,10 @@ void Qgs3DMapCanvasWidget::onPointCloudChangeAttributeSettingsChanged()
   }
 
   mMapToolPointCloudChangeAttribute->setAttribute( attributeName );
+  mMapToolPaintBrush->setAttribute( attributeName );
+  // TODO: validate values for attribute
   mMapToolPointCloudChangeAttribute->setNewValue( mSpinChangeAttributeValue->value() );
+  mMapToolPaintBrush->setNewValue( mSpinChangeAttributeValue->value() );
 }
 
 void Qgs3DMapCanvasWidget::setSceneExtentOn2DCanvas()
