@@ -97,7 +97,7 @@ class _3D_EXPORT QgsRubberBand3D
     };
 
     QgsRubberBand3D( Qgs3DMapSettings &map, QgsAbstract3DEngine *engine, Qt3DCore::QEntity *parentEntity, Qgis::GeometryType geometryType = Qgis::GeometryType::Line );
-    ~QgsRubberBand3D();
+    ~QgsRubberBand3D() = default;
 
     //! Returns the rubber band width in pixels
     float width() const;

@@ -140,16 +140,6 @@ void QgsRubberBand3D::setupPolygon( Qt3DCore::QEntity *parentEntity )
   mPolygonEntity->addComponent( mPolygonMaterial );
 }
 
-QgsRubberBand3D::~QgsRubberBand3D()
-{
-  if ( mPolygonEntity )
-    mPolygonEntity->deleteLater();
-  if ( mLineEntity )
-    mLineEntity->deleteLater();
-  if ( mMarkerEntity )
-    mMarkerEntity->deleteLater();
-}
-
 float QgsRubberBand3D::width() const
 {
   return mWidth;
