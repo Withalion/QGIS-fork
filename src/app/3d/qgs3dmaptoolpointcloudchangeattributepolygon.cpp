@@ -50,6 +50,7 @@ void Qgs3DMapToolPointCloudChangeAttributePolygon::mouseMoveEvent( QMouseEvent *
   }
   else
   {
+    mMousePos = event->pos();
     mLineRubberBand->moveLastPoint( movedPoint );
     if ( !mPolygonRubberBand->isEmpty() )
     {
@@ -169,6 +170,10 @@ void Qgs3DMapToolPointCloudChangeAttributePolygon::run()
 
   if ( mToolType == AboveLine || mToolType == BelowLine )
   {
+    if ( mScreenPoints.size() == 1 )
+    {
+      mScreenPoints.append( mMousePos );
+    }
     if ( mScreenPoints.size() != 2 )
       return;
     const double y = mToolType == AboveLine ? 0 : mCanvas->height();

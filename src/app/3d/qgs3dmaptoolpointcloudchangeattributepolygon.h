@@ -60,6 +60,7 @@ class Qgs3DMapToolPointCloudChangeAttributePolygon : public Qgs3DMapToolPointClo
     std::unique_ptr<QgsRubberBand3D> mPolygonRubberBand;
     std::unique_ptr<QgsRubberBand3D> mLineRubberBand;
     QPoint mClickPoint;
+    QPoint mMousePos;
     ToolType mToolType;
 };
 
